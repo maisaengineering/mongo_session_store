@@ -13,14 +13,14 @@ module ActionDispatch
 
         field :_id, :type => String
 
-        field :data, :type => Moped::BSON::Binary, :default => Moped::BSON::Binary.new(:generic, Marshal.dump({}))
+        field :data, :type => BSON::Binary, :default => BSON::Binary.new(:generic, Marshal.dump({}))
 
         attr_accessible :_id, :data
       end
 
       private
       def pack(data)
-        Moped::BSON::Binary.new(:generic, Marshal.dump(data))
+        BSON::Binary.new(:generic, Marshal.dump(data))
       end
     end
   end

@@ -13,15 +13,11 @@ module ActionDispatch
 
         field :_id, :type => String
 
-        field :data, :type => Binary, :default => Marshal.dump({})
+        field :data, :type =>  Binary, :default => Marshal.dump({})
 
         attr_accessible :_id, :data
       end
-
-      private
-      def pack(data)
-        Marshal.dump(data)
-      end
+      
     end
   end
 end

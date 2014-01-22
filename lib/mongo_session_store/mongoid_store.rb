@@ -13,12 +13,12 @@ module ActionDispatch
 
         field :_id, :type => String
 
-        field :data, :type => BSON::Binary, :default => BSON::Binary.new({}.to_bson,:generic) 
+        field :data, :type => BSON::Binary, :default => BSON::Binary.new(Digest::MD5.digest({}.to_bson),:md5) 
       end
 
       private
       def pack(data)
-        BSON::Binary.new(data.to_bson,:generic)
+        BSON::Binary.new(Digest::MD5.digest(data.to_bson),:md5)
       end
     end
   end

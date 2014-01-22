@@ -64,7 +64,7 @@ module ActionDispatch
         end
 
         def pack(data)
-          Marshal.dump(data)
+          BSON::Binary.new(Marshal.dump(data), :generic)
         end
 
         def unpack(packed)

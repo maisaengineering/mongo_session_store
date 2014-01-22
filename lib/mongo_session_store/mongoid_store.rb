@@ -26,4 +26,5 @@ module ActionDispatch
   end
 end
 
+
 MongoidStore = ActionDispatch::Session::MongoidStore

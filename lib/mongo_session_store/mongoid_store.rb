@@ -15,7 +15,7 @@ module ActionDispatch
 
         field :data, :type => BSON::Binary, :default => BSON::Binary.new(Marshal.dump({}),:generic)
 
-        attr_accessible :_id, :data
+        #attr_accessible :_id, :data
       end
 
       private

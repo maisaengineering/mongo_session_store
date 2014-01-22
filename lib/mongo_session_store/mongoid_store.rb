@@ -13,16 +13,15 @@ module ActionDispatch
 
         field :_id, :type => String
 
-        field :data, :type => BSON::Binary, :default => BSON::Binary.new(Digest::MD5.digest({}.to_bson),:md5) 
+        field :data, :type => BSON::Binary, :default => BSON::Binary.new(Marshal.dump({}), :generic) 
       end
 
       private
       def pack(data)
-        BSON::Binary.new(Digest::MD5.digest(data.to_bson),:md5)
+        BSON::Binary.new(Marshal.dump(data), :generic)
       end
     end
   end
-end
+end 
 
-
-MongoidStore = ActionDispatch::Session::MongoidStore
+MongoidStore = ActionDispatch::Session::MongoidStore 

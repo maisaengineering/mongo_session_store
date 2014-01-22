@@ -13,12 +13,12 @@ module ActionDispatch
 
         field :_id, :type => String
 
-        field :data, :type => BSON::Binary, :default => BSON::Binary.new(Marshal.dump({}), :generic) 
+        field :data, :type => Binary, :default => Marshal.dump({})
       end
 
       private
       def pack(data)
-        BSON::Binary.new(Marshal.dump(data), :generic)
+        Marshal.dump(data)
       end
     end
   end

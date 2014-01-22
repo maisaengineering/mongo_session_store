@@ -13,19 +13,15 @@ module ActionDispatch
 
         field :_id, :type => String
 
-        field :data, :type => String, :default => [Marshal.dump({})].pack("m*")
+        field :data, :type => BSON::Binary, :default => BSON::Binary.new(Marshal.dump({}),:generic)
 
         attr_accessible :_id, :data
       end
-      private 
+
+      private
       def pack(data)
-         [Marshal.dump(data)].pack("m*")
+        BSON::Binary.new(Marshal.dump(data),:generic)
       end
-      def unpack(packed)
-          return nil unless packed
-          Marshal.load(packed.unpack("m*").first)
-      end
-      
     end
   end
 end

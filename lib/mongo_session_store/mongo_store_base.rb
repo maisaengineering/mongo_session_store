@@ -64,12 +64,12 @@ module ActionDispatch
         end
 
         def pack(data)
-          BSON::Binary.new(Marshal.dump(data), :generic)
+           [Marshal.dump(data)].pack("m*")
         end
 
         def unpack(packed)
           return nil unless packed
-          Marshal.load(StringIO.new(packed.to_s))
+          Marshal.load(packed.unpack("m*").first)
         end
 
     end

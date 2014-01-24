@@ -22,12 +22,10 @@ module ActionDispatch
       end
 
       def unpack(packed)
-        begin
+      
          return nil unless packed
          Marshal.load(packed.unpack("m*").first)
-        rescue
-         nil
-       end
+
       end
 
     end
